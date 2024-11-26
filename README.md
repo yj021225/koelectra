@@ -145,10 +145,6 @@ hotelapp_sampled_reviews.json<br>
 <img src="./img/losschart.png" 
  align="center" width="33%"/>
 </p>
-학습 정확도와 처음에도 높은 수치였지만 끝으로 갈수록 더욱 증가했고<br>
-평균 학습 오차(loss)도 처음 0.38에서 0.19로 줄어들었으므로 긍정 라벨과<br>
-부정 라벨이 맞게 잘 들어가 있고 그러므로 유의미한 결과를 얻었다.<br>
-<br>
 <table>
     <tr>
         <td></td>
@@ -181,3 +177,7 @@ hotelapp_sampled_reviews.json<br>
         <td>0.186</td>
     </tr>
 </table>
+
+학습 정확도와 처음에도 높은 수치였지만 끝으로 갈수록 더욱 증가했고<br>
+평균 학습 오차(loss)도 처음 0.38에서 0.19로 줄어들었으므로 긍정 라벨과<br>
+부정 라벨이 맞게 잘 들어가 있고 그러므로 유의미한 결과를 얻었다.<br>
