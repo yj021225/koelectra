@@ -33,38 +33,41 @@ https://github.com/danmadeira/simple-icon-badges
 [yanolja_reviews.json](./yanolja_reviews.json)<br>
 [abouthere_reviews_2020.json](./abouthere_reviews_2020.json)<br>
 [yanolja_reviews_2020.json](./yanolja_reviews_2020.json)<br>
-
+```
 [
     {
         "score":5,
         "content":"이용하기 편함",
         "date":"2024-11-04"
-    },<br>
+    },
     {
         "score":4,
         "content":"굿",
         "date":"2024-11-03"
-    },<br>
+    },
     .
     .
     .
-]<br>
+]
+```
 abouthere_reviews_2020.json<br>
+```
 [
     {
         "score":5,
         "content":"좋아요 만족합니다",
         "date":"2024-11-04"
-    },<br>
+    },
     {
         "score":5,
         "content":"편리하고 좋아요",
         "date":"2024-11-04"
-    },<br>
+    },
     .
     .
     .
-]<br>
+]
+```
 yanolja_reviews_2020.json<br>
 ### 2.2 학습 데이터 구축
 야놀자앱 리뷰와 여기어때앱 리뷰를 긍부정을 구분하는 라벨링 작업을 진행<br>
@@ -72,47 +75,52 @@ yanolja_reviews_2020.json<br>
 [yanolja_labeled_reviews.json](./yanolja_labeled_reviews.json)<br>
 [abouthere_2020_labeled_reviews.json](./abouthere_2020_labeled_reviews.json)<br>
 [yanolja_2020_labeled_reviews.json](./yanolja_2020_labeled_reviews.json)<br>
+```
 [
     {
         "score": 5,
         "content": "이용하기 편함",
         "date": "2024-11-04",
         "label": 1
-    },<br>
+    },
     {
         "score": 4,
         "content": "굿",
         "date": "2024-11-03",
         "label": 1
-    },<br>
+    },
     .
     .
     .
-]<br>
+]
+```
 abouthere_2020_labeled_reviews.json<br>
+```
 [
     {
         "score": 5,
         "content": "좋아요 만족합니다",
         "date": "2024-11-04",
         "label": 1
-    },<br>
+    },
     {
         "score": 5,
         "content": "편리하고 좋아요",
         "date": "2024-11-04",
         "label": 1
-    },<br>
+    },
     .
     .
     .
-]<br>
+]
+```
 yanolja_2020_labeled_reviews.json<br>
 야놀자앱 리뷰와 여기어때앱 리뷰를 2020년이후 리뷰를 합치고 <br>
 그중에 라벨이 1인 리뷰 1000건 0인 리뷰 1000건씩 랜덤으로 뽑아 <br>
 야놀자앱 리뷰와 여기어때앱 리뷰를 원래 비율에 밪게 샘플링 한다.<br>
 [hotelapp_2020_reviews.json](./hotelapp_2020_reviews.json)<br>
 [hotelapp_sampled_reviews.json](./hotelapp_sampled_reviews.json)<br>
+```
 [
     {
         "score": 5,
@@ -120,23 +128,25 @@ yanolja_2020_labeled_reviews.json<br>
         "date": "2022-08-13",
         "label": 1,
         "app": "yanolja"
-    },<br>
+    },
     {
         "score": 5,
         "content": "Good!",
         "date": "2022-10-09",
         "label": 1,
         "app": "yanolja"
-    },<br>
+    },
     .
     .
     .
-]<br>
+]
+```
 hotelapp_sampled_reviews.json<br>
 ### 2.3 탐색적 데이터 분석
 <img src="./img/score_histogram.png"><br>
 리뷰 점수별 분포표
 ## 3. 한국어 자연어 처리 학습 결과
+### 3.1 학습 결과 그래프
 <p align="center">
 <img src="./img/training_accuracy.png" 
  align="center" width="33%"/>
@@ -180,4 +190,17 @@ hotelapp_sampled_reviews.json<br>
 
 학습 정확도와 처음에도 높은 수치였지만 끝으로 갈수록 더욱 증가했고<br>
 평균 학습 오차(loss)도 처음 0.38에서 0.19로 줄어들었으므로 긍정 라벨과<br>
-부정 라벨이 맞게 잘 들어가 있고 그러므로 유의미한 결과를 얻었다.<br>
+부정 라벨이 맞게 잘 들어가 있고 그러므로 유의미한 결과를 얻었다.
+### 3.2 모델 적용
+학습 모델을 전체 데이터(31,415건)에 적용한 결과
+```　
+Test step : 1/63, Temp Accuracy : 1.0
+Test step : 2/63, Temp Accuracy : 0.96875
+Test step : 3/63, Temp Accuracy : 1.0
+...
+Test step : 61/63, Temp Accuracy : 1.0
+Test step : 62/63, Temp Accuracy : 0.90625
+Test step : 63/63, Temp Accuracy : 0.875
+Total Accuracy : 0.9484126984126984
+```
+학습 모델을 전체 데이터에 적용한 결과 값은 예측 정확도가 0.95가 나왔다.
