@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import json
 import torch
 from torch.utils.data import TensorDataset, DataLoader, SequentialSampler
 from transformers import ElectraTokenizer, ElectraForSequenceClassification
@@ -12,7 +13,7 @@ model.to(device)
 model.eval()
 
 # 데이터 셋은 전체 데이터셋을 넣기
-train_data_path = "./hotelapp_sampled_reviews.json"
+train_data_path = "./hotelapp_2020_reviews.json"
 
 dataset = pd.read_json(train_data_path)
 text = list(dataset['content'].values)
@@ -61,5 +62,12 @@ print(f'Total Accuracy : {avg_test_accuracy}')
 # 예측 결과를 데이터프레임에 추가
 dataset['pred_label'] = all_preds
 
+# Timestamp 데이터를 문자열로 변환
+for column in dataset.select_dtypes(include=['datetime64[ns]', 'datetime64']):
+    dataset[column] = dataset[column].astype(str)
+
 # 결과를 파일로 저장
-dataset.to_csv('ratings_result.txt', sep='\t', index=False)
+data_as_dict = dataset.to_dict(orient='records')
+
+with open("hotelapp_review_with_predicted_label.json", "w", encoding="utf-8") as json_file:
+    json.dump(data_as_dict, json_file, ensure_ascii=False, indent=4)
