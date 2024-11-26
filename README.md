@@ -203,7 +203,32 @@ Test step : 981/982, Temp Accuracy : 0.9375
 Test step : 982/982, Temp Accuracy : 0.9565217391304348
 Total Accuracy : 0.943342944744532
 ```
-학습 모델을 전체 데이터에 적용한 결과 값은 예측 정확도가 0.94가 나왔다.
+학습 모델을 전체 데이터에 적용한 결과 값은 예측 정확도가 0.94가 나왔다.<br>
+[hotelapp_review_with_predicted_label.json](./hotelapp_review_with_predicted_label.json)<br>
+```
+[
+    {
+        "score": 5,
+        "content": "이용하기 편함",
+        "date": "2024-11-04",
+        "label": 1,
+        "app": "abouthere",
+        "pred_label": 1
+    },
+    {
+        "score": 4,
+        "content": "굿",
+        "date": "2024-11-03",
+        "label": 1,
+        "app": "abouthere",
+        "pred_label": 1
+    },
+    .
+    .
+    .
+]
+```
+hotelapp_review_with_predicted_label.json
 ## 4. 결론 및 배운점
 호텔앱 리뷰 학습 데이터 셋이 0.9이상의 높은 정확도를 나타냈다.<br>
 데이터를 평점에 따라 긍부정 라벨링을 한것과 학습을 통해 긍부정을 분류 하였을 때<br>
