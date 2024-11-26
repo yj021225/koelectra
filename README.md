@@ -138,11 +138,11 @@ hotelapp_sampled_reviews.json<br>
 리뷰 점수별 분포표
 ## 3. 한국어 자연어 처리 학습 결과
 <p align="center">
-<img src="./img/learningacc.png" 
+<img src="./img/training_accuracy.png" 
  align="center" width="33%"/>
-<img src="./img/veriacc.png" 
+<img src="./img/validation_accuracy.png" 
  align="center" width="33%"/>
-<img src="./img/losschart.png" 
+<img src="./img/avg_loss.png" 
  align="center" width="33%"/>
 </p>
 <table>
