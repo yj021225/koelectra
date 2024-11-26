@@ -189,21 +189,21 @@ hotelapp_sampled_reviews.json<br>
 </table>
 
 학습 정확도와 처음에도 높은 수치였지만 끝으로 갈수록 더욱 증가했고<br>
-평균 학습 오차(loss)도 처음 0.38에서 0.19로 줄어들었으므로 긍정 라벨과<br>
-부정 라벨이 맞게 잘 들어가 있고 그러므로 유의미한 결과를 얻었다.
+평균 학습 오차(loss)도 처음 0.38이상에서 0.19이하로 줄어들었으므로<br>
+긍정 라벨과 부정 라벨이 맞게 잘 들어가 있고 그러므로 유의미한 결과를 얻었다.
 ### 3.2 모델 적용
 학습 모델을 전체 데이터(31,415건)에 적용한 결과
 ```　
-Test step : 1/63, Temp Accuracy : 1.0
-Test step : 2/63, Temp Accuracy : 0.96875
-Test step : 3/63, Temp Accuracy : 1.0
+Test step : 1/982, Temp Accuracy : 0.96875
+Test step : 2/982, Temp Accuracy : 0.9375
+Test step : 3/982, Temp Accuracy : 0.96875
 ...
-Test step : 61/63, Temp Accuracy : 1.0
-Test step : 62/63, Temp Accuracy : 0.90625
-Test step : 63/63, Temp Accuracy : 0.875
-Total Accuracy : 0.9484126984126984
+Test step : 980/982, Temp Accuracy : 0.96875
+Test step : 981/982, Temp Accuracy : 0.9375
+Test step : 982/982, Temp Accuracy : 0.9565217391304348
+Total Accuracy : 0.943342944744532
 ```
-학습 모델을 전체 데이터에 적용한 결과 값은 예측 정확도가 0.95가 나왔다.
+학습 모델을 전체 데이터에 적용한 결과 값은 예측 정확도가 0.94가 나왔다.
 ## 4. 결론 및 배운점
 호텔앱 리뷰 학습 데이터 셋이 0.9이상의 높은 정확도를 나타냈다.<br>
 데이터를 평점에 따라 긍부정 라벨링을 한것과 학습을 통해 긍부정을 분류 하였을 때<br>
