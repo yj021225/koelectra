@@ -2,10 +2,10 @@
 <img src="./img/yanolja_logo.png" 
  align="center" width="45%"/>
 <img src="./img/abouthere_logo.png" 
- align="center" width="46.5%"/><br>
+ align="center" width="47%"/><br>
 </p>
 
-# 한국어 자연어 처리를 통한 hotelapp 리뷰 분석 프로젝트
+# Koelectra를 활용한 hotelapp 리뷰 분석 프로젝트
 <!-- 
 badge icon 참고 사이트
 https://github.com/danmadeira/simple-icon-badges
@@ -137,14 +137,47 @@ hotelapp_sampled_reviews.json<br>
 <img src="./img/score_histogram.png"><br>
 리뷰 점수별 분포표
 ## 3. 한국어 자연어 처리 학습 결과
+### 3.1 학습 결과 그래프
 <p align="center">
-<img src="./img/losschart.png" 
- align="center" width="33%"/>
 <img src="./img/learningacc.png" 
  align="center" width="33%"/>
 <img src="./img/veriacc.png" 
+ align="center" width="33%"/>
+<img src="./img/losschart.png" 
  align="center" width="33%"/>
 </p><br>
 학습 정확도와 처음에도 높은 수치였지만 끝으로 갈수록 더욱 증가했고<br>
 평균 학습 오차(loss)도 처음 0.38에서 0.19로 줄어들었으므로 긍정 라벨과<br>
 부정 라벨이 맞게 잘 들어가 있고 그러므로 유의미한 결과를 얻었다.<br>
+<table>
+    <tr>
+        <td></td>
+        <td></td>
+        <td>Epoch1</td>
+        <td>Epoch2</td>
+        <td>Epoch3</td>
+        <td>Epoch4</td>
+    </tr>
+    <tr>
+        <td rowspan="3">학습 데이터</td>
+        <td>학습 정확도</td>
+        <td>0.923</td>
+        <td>0.941</td>
+        <td>0.953</td>
+        <td>0.958</td>
+    </tr>
+    <tr>
+        <td>검증 정확도</td>
+        <td>0.911</td>
+        <td>0.923</td>
+        <td>0.904</td>
+        <td>0.918</td>
+    </tr>
+    <tr>
+        <td>평균 학습 오차</td>
+        <td>0.385</td>
+        <td>0.283</td>
+        <td>0.212</td>
+        <td>0.186</td>
+    </tr>
+</table>
