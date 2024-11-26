@@ -137,7 +137,6 @@ hotelapp_sampled_reviews.json<br>
 <img src="./img/score_histogram.png"><br>
 리뷰 점수별 분포표
 ## 3. 한국어 자연어 처리 학습 결과
-### 3.1 학습 결과 그래프
 <p align="center">
 <img src="./img/learningacc.png" 
  align="center" width="33%"/>
