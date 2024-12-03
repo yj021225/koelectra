@@ -229,7 +229,122 @@ Total Accuracy : 0.943342944744532
 ]
 ```
 hotelapp_review_with_predicted_label.json
-## 4. 결론 및 배운점
+## 4. 데이터 수집 소스코드
+```
+from datetime import datetime
+
+from google_play_scraper import Sort, reviews
+import pandas as pd
+
+# 크롤링 대상 앱 정보
+reviews_list = []
+result, continuation_token = reviews(
+    'com.cultsotry.yanolja.nativeapp',
+    lang='ko',  # default: 'en'
+    country='kr',  # default: 'us'
+    sort=Sort.NEWEST,  # default: Sort.MOST_RELEVANT
+    count=50000,  # default: 100
+    filter_score_with=None  # default: None (모든 평점을 다 가져옴)
+)
+for review in result:
+    temp_list = [review['score'],review['content'],review['at'].strftime('%Y-%m-%d')]
+    reviews_list.append(temp_list)
+
+review_df = pd.DataFrame(reviews_list, columns=['score', 'content', 'date'])
+review_df.dropna()
+print(review_df)
+
+
+# JSON 파일로 저장
+json_file_path = 'yanolja_reviews.json'
+review_df.to_json(json_file_path, orient='records', force_ascii=False, indent=4)
+
+year = 2024
+review_list_2020 = []
+
+while year >= 2020:
+    result, continuation_token = reviews(
+        'com.cultsotry.yanolja.nativeapp',
+        lang='ko',  # default: 'en'
+        country='kr',  # default: 'us'
+        sort=Sort.NEWEST,  # default: Sort.MOST_RELEVANT
+        count=50000,  # default: 100
+        filter_score_with=None
+    )
+
+    token = continuation_token
+    year = result[-1]['at'].year
+
+    for review in result:
+        if review['at'].year >= 2020:
+            temp_list_2020 = [review['score'],review['content'],review['at'].strftime('%Y-%m-%d')]
+            review_list_2020.append(temp_list_2020)
+
+review_df_2020 = pd.DataFrame(review_list_2020, columns=['score', 'content', 'date'])
+print(len(review_df_2020))
+
+json_file_path = 'yanolja_reviews_2020.json'
+review_df_2020.to_json(json_file_path, orient='records', force_ascii=False, indent=4)
+```
+[yanolja.py](./yanolja.py)
+```
+from datetime import datetime
+
+from google_play_scraper import Sort, reviews
+import pandas as pd
+
+# 크롤링 대상 앱 정보
+reviews_list = []
+result, continuation_token = reviews(
+    'kr.goodchoice.abouthere',
+    lang='ko',  # default: 'en'
+    country='kr',  # default: 'us'
+    sort=Sort.NEWEST,  # default: Sort.MOST_RELEVANT
+    count=50000,  # default: 100
+    filter_score_with=None  # default: None (모든 평점을 다 가져옴)
+)
+for review in result:
+    temp_list = [review['score'],review['content'],review['at'].strftime('%Y-%m-%d')]
+    reviews_list.append(temp_list)
+
+review_df = pd.DataFrame(reviews_list, columns=['score', 'content', 'date'])
+review_df.dropna()
+print(review_df)
+
+
+# JSON 파일로 저장
+json_file_path = 'abouthere_reviews.json'
+review_df.to_json(json_file_path, orient='records', force_ascii=False, indent=4)
+
+year = 2024
+review_list_2020 = []
+
+while year >= 2020:
+    result, continuation_token = reviews(
+        'kr.goodchoice.abouthere',
+        lang='ko',  # default: 'en'
+        country='kr',  # default: 'us'
+        sort=Sort.NEWEST,  # default: Sort.MOST_RELEVANT
+        count=50000,  # default: 100
+        filter_score_with=None
+    )
+
+    token = continuation_token
+    year = result[-1]['at'].year
+
+    for review in result:
+        if review['at'].year >= 2020:
+            temp_list_2020 = [review['score'],review['content'],review['at'].strftime('%Y-%m-%d')]
+            review_list_2020.append(temp_list_2020)
+
+review_df_2020 = pd.DataFrame(review_list_2020, columns=['score', 'content', 'date'])
+print(len(review_df_2020))
+
+json_file_path = 'abouthere_reviews_2020.json'
+review_df_2020.to_json(json_file_path, orient='records', force_ascii=False, indent=4)
+```
+[abouthere.py](./abouthere.py)
+## 5. 느낌 및 보완방향
 호텔앱 리뷰 학습 데이터 셋이 0.9이상의 높은 정확도를 나타냈다.<br>
 데이터를 평점에 따라 긍부정 라벨링을 한것과 학습을 통해 긍부정을 분류 하였을 때<br>
 많이 일치 하는 내용을 보였고 앱 리뷰 평점과 리뷰 내용이 많이 일치 한다는 것을<br>
